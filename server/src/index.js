@@ -52,6 +52,18 @@ app.use("/api/products", productsRouter);
 import inventoryRouter from "./modules/inventory/inventory.router.js";
 app.use("/api/inventory", inventoryRouter);
 
+// Stock Movements
+import stockRouter from "./modules/stockMovements/stock.router.js";
+app.use("/api/stock", stockRouter);
+
+// Sales Orders
+import salesRouter from "./modules/salesOrders/sales.router.js";
+app.use("/api/sales", salesRouter);
+
+// Sales Order Items
+import itemsRouter from "./modules/salesOrderItems/items.router.js";
+app.use("/api/order-items", itemsRouter);
+
 app.get("/", (req, res) => {
   res.send("RESTock API running!");
 });
