@@ -33,3 +33,12 @@ export const deleteCustomer = async (id) => {
     [id]
   );
 };
+
+export const updateCustomer = async (id, join_date) => {
+  const [result] = await pool.query(
+    "UPDATE Customer SET join_date = ? WHERE person_id = ?",
+    [join_date, id]
+  );
+
+  return result;
+};

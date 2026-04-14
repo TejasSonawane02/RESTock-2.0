@@ -32,4 +32,27 @@ export const deleteSupplier = async (req, res) => {
     }   
 };
 
+export const updateSupplier = async (req, res) => {
+    const { id } = req.params;
+    const { company_name, contact_person } = req.body;
+    if (!company_name) {
+        return res.status(400).json({ error: "company_name is required" });
+    }
+    try {
+        const result = await supplierService.updateSupplier(id, company_name, contact_person);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Supplier not found" });
+        }
+
+        res.json({
+            message: "Supplier updated",
+            affectedRows: result.affectedRows
+        });
+    } catch (error) {
+        console.error("Error updating supplier:", error);
+        res.status(500).json({ error: "Failed to update supplier" });
+    }
+};
+
 

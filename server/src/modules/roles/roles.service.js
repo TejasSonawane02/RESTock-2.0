@@ -39,3 +39,11 @@ export const deleteRole = async (role_id) => {
     );
     return result;
 };
+
+export const updateRole = async (role_id, role_name) => {
+    const [result] = await pool.query(
+        "UPDATE Roles SET role_name = ? WHERE role_id = ?",
+        [role_name, role_id]
+    );
+    return result;
+};

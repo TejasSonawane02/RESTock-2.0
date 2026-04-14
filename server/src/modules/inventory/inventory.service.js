@@ -40,3 +40,20 @@ export const deleteInventory = async (product_id, warehouse_id) => {
     [product_id, warehouse_id]
   );
 };
+
+export const updateInventory = async (
+  product_id,
+  warehouse_id,
+  quantity,
+  stock_value,
+  total_cost
+) => {
+  const [result] = await pool.query(
+    `UPDATE Inventory
+     SET quantity = ?, stock_value = ?, total_cost = ?
+     WHERE product_id = ? AND warehouse_id = ?`,
+    [quantity, stock_value, total_cost, product_id, warehouse_id]
+  );
+
+  return result;
+};

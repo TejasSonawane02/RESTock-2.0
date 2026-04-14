@@ -20,3 +20,12 @@ export const deleteCategory = async (id) => {
     [id]
   );
 };
+
+export const updateCategory = async (id, name, description) => {
+  const [result] = await pool.query(
+    "UPDATE Categories SET name = ?, description = ? WHERE category_id = ?",
+    [name, description, id]
+  );
+
+  return result;
+};

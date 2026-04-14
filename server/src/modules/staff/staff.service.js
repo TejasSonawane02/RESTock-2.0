@@ -60,3 +60,12 @@ export const deleteStaff = async (id) => {
     [id]
   );
 };
+
+export const updateStaff = async (person_id, role_id, hire_date) => {
+  const [result] = await pool.query(
+    "UPDATE Staff SET role_id = ?, hire_date = ? WHERE person_id = ?",
+    [role_id, hire_date, person_id]
+  );
+
+  return result;
+};

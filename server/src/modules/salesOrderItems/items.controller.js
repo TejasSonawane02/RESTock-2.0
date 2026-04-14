@@ -45,3 +45,33 @@ export const deleteOrderItem = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+export const updateOrderItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { sale_id, product_id, quantity_sold } = req.body;
+    if (sale_id == null || product_id == null || quantity_sold == null) {
+      return res.status(400).json({ error: "sale_id, product_id, and quantity_sold are required" });
+    }
+
+    const result = await itemService.updateOrderItem(
+      id,
+      sale_id,
+      product_id,
+      quantity_sold
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Order item not found" });
+    }
+
+    res.json({
+      message: "Order item updated",
+      affectedRows: result.affectedRows
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};

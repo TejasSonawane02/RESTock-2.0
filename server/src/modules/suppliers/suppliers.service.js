@@ -20,3 +20,11 @@ export const deleteSupplier = async (id) => {
     );
 };
 
+export const updateSupplier = async (id, company_name, contact_person) => {
+    const [result] = await pool.query(
+        "UPDATE Suppliers SET company_name = ?, contact_person = ? WHERE supplier_id = ?",
+        [company_name, contact_person, id]
+    );
+    return result;
+};
+

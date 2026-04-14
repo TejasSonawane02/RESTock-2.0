@@ -40,3 +40,21 @@ export const deleteProduct = async (id) => {
     [id]
   );
 };
+
+export const updateProduct = async (
+  id,
+  category_id,
+  supplier_id,
+  name,
+  cost_price,
+  sale_price
+) => {
+  const [result] = await pool.query(
+    `UPDATE Products
+     SET category_id = ?, supplier_id = ?, name = ?, cost_price = ?, sale_price = ?
+     WHERE product_id = ?`,
+    [category_id, supplier_id, name, cost_price, sale_price, id]
+  );
+
+  return result;
+};

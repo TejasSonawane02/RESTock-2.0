@@ -36,3 +36,12 @@ export const deleteOrderItem = async (id) => {
     [id]
   );
 };
+
+export const updateOrderItem = async (id, sale_id, product_id, quantity_sold) => {
+  const [result] = await pool.query(
+    "UPDATE SalesOrderItems SET sale_id = ?, product_id = ?, quantity_sold = ? WHERE sale_item_id = ?",
+    [sale_id, product_id, quantity_sold, id]
+  );
+
+  return result;
+};

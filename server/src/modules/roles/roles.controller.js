@@ -34,3 +34,27 @@ export const deleteRole = async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }   
 };
+
+export const updateRole = async (req, res) => {
+    try {
+        const { role_id } = req.params;
+        const { role_name } = req.body;
+        if (!role_name) {
+            return res.status(400).json({ error: "role_name is required" });
+        }
+
+        const result = await roleService.updateRole(role_id, role_name);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Role not found" });
+        }
+
+        res.json({
+            message: "Role updated successfully",
+            affectedRows: result.affectedRows
+        });
+    } catch (error) {
+        console.error("Error updating role:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};

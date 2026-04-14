@@ -35,3 +35,16 @@ export const deleteWarehouse = async (warehouse_id) => {
   );
   return result;
 }
+
+export const updateWarehouse = async (
+  warehouse_id,
+  location_name,
+  address_city,
+  address_pincode
+) => {
+  const [result] = await pool.query(
+    "UPDATE Warehouses SET location_name = ?, address_city = ?, address_pincode = ? WHERE warehouse_id = ?",
+    [location_name, address_city, address_pincode, warehouse_id]
+  );
+  return result;
+};

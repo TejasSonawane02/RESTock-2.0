@@ -34,3 +34,11 @@ export const deletePerson = async (person_id) => {
     );
     return result;
 };
+
+export const updatePerson = async (person_id, first_name, last_name, email) => {
+    const [result] = await pool.query(
+        "UPDATE Person SET first_name = ?, last_name = ?, email = ? WHERE person_id = ?",
+        [first_name, last_name, email, person_id]
+    );
+    return result;
+};

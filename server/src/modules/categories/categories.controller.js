@@ -26,3 +26,25 @@ export const deleteCategory = async (req, res) => {
     await categoriesService.deleteCategory(id);
     res.json({ message: "Category deleted" });
 };
+
+export const updateCategory = async (req, res) => {
+    const { id } = req.params;
+    const { name, description } = req.body;
+    if (!name) {
+        return res.status(400).json({ error: "name is required" });
+    }
+    try {
+        const result = await categoriesService.updateCategory(id, name, description);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Category not found" });
+        }
+
+        res.json({
+            message: "Category updated",
+            affectedRows: result.affectedRows
+        });
+    } catch (error) {
+        console.error("Error updating category:", error);
+        res.status(500).json({ error: "Failed to update category" });
+    }
+};
