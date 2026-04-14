@@ -40,6 +40,10 @@ app.use("/api/person", personRouter);
 import staffRouter from "./modules/staff/staff.router.js";
 app.use("/api/staff", staffRouter);
 
+// Customers
+import customerRouter from "./modules/customer/customer.router.js";
+app.use("/api/customers", customerRouter);
+
 app.get("/", (req, res) => {
   res.send("RESTock API running!");
 });
