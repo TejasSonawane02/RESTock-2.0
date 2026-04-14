@@ -44,6 +44,14 @@ app.use("/api/staff", staffRouter);
 import customerRouter from "./modules/customer/customer.router.js";
 app.use("/api/customers", customerRouter);
 
+// Products
+import productsRouter from "./modules/products/products.router.js";
+app.use("/api/products", productsRouter);
+
+// Inventory
+import inventoryRouter from "./modules/inventory/inventory.router.js";
+app.use("/api/inventory", inventoryRouter);
+
 app.get("/", (req, res) => {
   res.send("RESTock API running!");
 });
