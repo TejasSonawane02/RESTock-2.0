@@ -14,9 +14,15 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(helmet());
 
-import categoriesRouter from "./modules/categories/categories.router.js";
+// Import and use routers
 
+// Categories
+import categoriesRouter from "./modules/categories/categories.router.js";
 app.use("/api/categories", categoriesRouter);
+
+// Suppliers
+import suppliersRouter from "./modules/suppliers/suppliers.router.js";
+app.use("/api/suppliers", suppliersRouter);
 
 app.get("/", (req, res) => {
   res.send("RESTock API running!");
