@@ -32,6 +32,10 @@ app.use("/api/warehouses", warehousesRouter);
 import rolesRouter from "./modules/roles/roles.router.js";
 app.use("/api/roles", rolesRouter);
 
+//Person
+import personRouter from "./modules/person/person.router.js";
+app.use("/api/person", personRouter);
+
 app.get("/", (req, res) => {
   res.send("RESTock API running!");
 });
