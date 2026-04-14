@@ -28,6 +28,10 @@ app.use("/api/suppliers", suppliersRouter);
 import warehousesRouter from "./modules/warehouses/warehouses.router.js";
 app.use("/api/warehouses", warehousesRouter);
 
+// Roles
+import rolesRouter from "./modules/roles/roles.router.js";
+app.use("/api/roles", rolesRouter);
+
 app.get("/", (req, res) => {
   res.send("RESTock API running!");
 });
