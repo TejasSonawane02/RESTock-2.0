@@ -4,6 +4,8 @@ export const getProducts = async () => {
   const [rows] = await pool.query(`
     SELECT 
       p.product_id,
+      p.category_id,
+      p.supplier_id,
       p.name,
       p.cost_price,
       p.sale_price,
